@@ -26,11 +26,13 @@ class SimulatorDataset(Dataset):
         passed = False
         while not passed:
             try:
-                inputs = self.prior.sample(torch.Size([1])).unsqueeze(0)
+                inputs = self.prior.sample(torch.Size([1]))
                 outputs = self.simulator(inputs)
                 passed = True
             except Exception as e:
-                print(e)
+#                 print(e)
+                import pdb; pdb.set_trace()
+                raise(e)
 
         return inputs, outputs
 
